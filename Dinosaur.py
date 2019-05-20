@@ -1,3 +1,4 @@
+# coding=utf-8
 import pygame
 
 
@@ -7,8 +8,9 @@ class Dinosaur(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.Height = Height
         self.Width = Width
-        self.imgs = ["./images/characters/dino.png","./images/characters/dino_ducking.png"]
+        self.imgs = ["./images/characters/dino.png", "./images/characters/dino_ducking.png"]
         self.reset()
+
     # 跳跃
     def jump(self, Time_Passed):
         if self.is_jumping_up:
@@ -23,9 +25,11 @@ class Dinosaur(pygame.sprite.Sprite):
                 self.is_jumping = False
                 self.is_jumping_up = True
                 self.jump_v = self.jump_v0
+
     # 跳跃时变为感到恐惧的表情
     def be_afraid(self):
         self.dinosaur = self.dinosaurs.subsurface((352, 0), (88, 95))
+
     # 将自己画到屏幕上
     def draw(self, screen):
         if self.is_running and not self.is_jumping:
@@ -38,6 +42,7 @@ class Dinosaur(pygame.sprite.Sprite):
             else:
                 self.dinosaur = self.dinosaurs.subsurface((264, 0), (88, 95))
         screen.blit(self.dinosaur, self.rect)
+
     # 重置
     def reset(self):
         # 恐龙是否在奔跑

@@ -1,3 +1,4 @@
+# coding=utf-8
 import pygame
 import random
 
@@ -11,9 +12,11 @@ class Scene(pygame.sprite.Sprite):
         self.speed = 8
         self.imgs = ["./images/backgrounds/background_1.png", "./images/backgrounds/background_2.png", "./images/backgrounds/background_3.png"]
         self.reset()
+
     # 持续向左移动
     def move(self):
         self.x = self.x - self.speed
+
     # 将自己画到屏幕上
     def draw(self, screen):
         if self.bg1_rect.right < 0:
@@ -30,6 +33,7 @@ class Scene(pygame.sprite.Sprite):
         screen.blit(self.bg1, self.bg1_rect)
         screen.blit(self.bg2, self.bg2_rect)
         screen.blit(self.bg3, self.bg3_rect)
+
     # 重置
     def reset(self):
         self.x = 0

@@ -56,7 +56,7 @@ def Show_GameOver(screen, score_text, time_image, taken_time, total_time):
 # 将Score转换为障碍物生成概率
 def Obstache_Probability(score, Grade):
     Probability = 1 / (Grade + math.exp(-score))
-    #print(Grade)
+    print(Grade)
     return min(Probability, 1)
 
 
@@ -121,7 +121,7 @@ def main():
             if event.type == GenPlantEvent:
                 Flag_Plant = True
             if event.type == GenPteraEvent:
-                if score > 2:
+                if score > 10:
                     Flag_Ptera = True
         # 实现恐龙跳跃
         key_pressed = pygame.key.get_pressed()
@@ -142,7 +142,6 @@ def main():
         dinosaur.draw(screen)
         # 障碍物——植物
         if random.random() < Obstache_Probability(score, Grade) and Flag_Plant:
-        #if random.random() < Obstache_Probability(score) and Flag_Plant:
             plant = Plant(Width, Height)
             plants.add(plant)
             Flag_Plant = False
@@ -157,8 +156,7 @@ def main():
             plant.draw(screen)
         # 障碍物——翼龙
         if random.random() < Obstache_Probability(score, Grade) and Flag_Ptera:
-        #if random.random() < Obstache_Probability(score) and Flag_Ptera:
-            if len(pteras) > 1:
+            if len(pteras) > 5:
                 continue
             ptera = Ptera(Width, Height)
             pteras.add(ptera)
