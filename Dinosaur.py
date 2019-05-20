@@ -50,12 +50,21 @@ class Dinosaur(pygame.sprite.Sprite):
         # 恐龙是否在向上跳跃
         self.is_jumping_up = True
         # 恐龙跳跃初始速度
+<<<<<<< HEAD
         self.jump_v0 = 800
         # 恐龙跳跃瞬时速度
         self.jump_v = self.jump_v0
         # 恐龙跳跃加速度
         self.jump_a_up = 2400
         self.jump_a_down = 2400
+=======
+        self.jump_v0 = 750
+        # 恐龙跳跃瞬时速度
+        self.jump_v = self.jump_v0
+        # 恐龙跳跃加速度
+        self.jump_a_up = 2000
+        self.jump_a_down = 1600
+>>>>>>> 1280a38b445aa0c0751c4a0954720200e7c5d52e
         # 恐龙初始位置
         self.initial_left = 40
         self.initial_top = int(self.Height / 2.3)
