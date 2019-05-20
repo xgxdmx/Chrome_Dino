@@ -10,11 +10,7 @@ class Plant(pygame.sprite.Sprite):
         self.Height = Height
         # 统计分数
         self.added_score = False
-<<<<<<< HEAD
         self.speed = 8
-=======
-        self.speed = 7
->>>>>>> 1280a38b445aa0c0751c4a0954720200e7c5d52e
         self.imgs = ["./images/obstacles/plant_big.png", "./images/obstacles/plant_small.png"]
         self.generate_random()
 

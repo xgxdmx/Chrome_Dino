@@ -8,11 +8,7 @@ class Scene(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.Width = Width
         self.Height = Height
-<<<<<<< HEAD
         self.speed = 8
-=======
-        self.speed = 7
->>>>>>> 1280a38b445aa0c0751c4a0954720200e7c5d52e
         self.imgs = ["./images/backgrounds/background_1.png", "./images/backgrounds/background_2.png", "./images/backgrounds/background_3.png"]
         self.reset()
     # 持续向左移动

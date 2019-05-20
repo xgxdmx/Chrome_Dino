@@ -1,3 +1,4 @@
+# coding=utf-8
 import sys
 import math
 import time
@@ -12,16 +13,10 @@ from Dinosaur import Dinosaur
 Background_Colour = (250, 250, 250)
 Width = 800
 Height = 400
-<<<<<<< HEAD
 Grade = 100
 
 # 显示GameOver界面
 def Show_GameOver(screen, score_text, time_image, taken_time, total_time):
-=======
-
-# 显示GameOver界面
-def Show_GameOver(screen, score_text, time_image):
->>>>>>> 1280a38b445aa0c0751c4a0954720200e7c5d52e
     screen.fill(Background_Colour)
     GameOver_img = pygame.image.load('./images/modules/gameover.png').convert_alpha()
     GameOver_rect = GameOver_img.get_rect()
@@ -30,7 +25,6 @@ def Show_GameOver(screen, score_text, time_image):
     Restart_img = pygame.image.load("./images/modules/restart.png").convert_alpha()
     Restart_rect = Restart_img.get_rect()
     Restart_rect.left, Restart_rect.top = int(Width / 2.25), int(Height / 2)
-<<<<<<< HEAD
     Text_img = pygame.image.load("./images/modules/text.png").convert_alpha()
     Text_rect = Text_img.get_rect()
     Text_rect.left, Text_rect.top = int(150), int(300)
@@ -38,11 +32,9 @@ def Show_GameOver(screen, score_text, time_image):
     screen.blit(score_text, [250,250]) # 输出分数
     screen.blit(time_image, [400, 250])
     screen.blit(Text_img, Text_rect)
-=======
     screen.blit(Restart_img, Restart_rect,)
     screen.blit(score_text, [250,250]) # 输出分数
     screen.blit(time_image, [400, 250])
->>>>>>> 1280a38b445aa0c0751c4a0954720200e7c5d52e
     pygame.display.update()
     while True:
         for event in pygame.event.get():
@@ -53,7 +45,6 @@ def Show_GameOver(screen, score_text, time_image):
                 mouse_pos = pygame.mouse.get_pos()
                 if mouse_pos[0] < Restart_rect.right and mouse_pos[0] > Restart_rect.left and mouse_pos[1] < Restart_rect.bottom and mouse_pos[1] > Restart_rect.top:
                     return True
-<<<<<<< HEAD
                 if mouse_pos[0] < Text_rect.right and mouse_pos[0] > Text_rect.left and mouse_pos[1] < Text_rect.bottom and mouse_pos[1] > Text_rect.top:
                     global Grade
                     Grade = Grade + 50
@@ -66,13 +57,6 @@ def Show_GameOver(screen, score_text, time_image):
 def Obstache_Probability(score, Grade):
     Probability = 1 / (Grade + math.exp(-score))
     #print(Grade)
-=======
-
-
-# 将Score转换为障碍物生成概率
-def Obstache_Probability(score):
-    Probability = 1 / (110 + math.exp(-score))
->>>>>>> 1280a38b445aa0c0751c4a0954720200e7c5d52e
     return min(Probability, 1)
 
 
@@ -85,12 +69,8 @@ def main():
     Clock = pygame.time.Clock()
     # 得分初始化
     score = 0
-<<<<<<< HEAD
     total_time = 0
     taken_time = 0
-=======
-
->>>>>>> 1280a38b445aa0c0751c4a0954720200e7c5d52e
     # 载入游戏素材并初始化
     Jump_Sound = pygame.mixer.Sound("./music/jump.wav")
     Jump_Sound.set_volume(10)
@@ -108,14 +88,9 @@ def main():
     pteras = pygame.sprite.Group()
     # 产生障碍物事件
     GenPlantEvent = pygame.constants.USEREVENT + 0
-<<<<<<< HEAD
     pygame.time.set_timer(GenPlantEvent, 2300)
-=======
-    pygame.time.set_timer(GenPlantEvent, 2000)
->>>>>>> 1280a38b445aa0c0751c4a0954720200e7c5d52e
     GenPteraEvent = pygame.constants.USEREVENT + 1
     pygame.time.set_timer(GenPteraEvent, 5000)
-
     # 判断游戏是否结束
     Running = True
     # 判断是否可以产生障碍物
@@ -124,7 +99,6 @@ def main():
     time0 = time.time()
     # 主循环
     while Running:
-<<<<<<< HEAD
         # 计时
         total_time = 0 # 分钟
         taken_time = pygame.time.get_ticks()  # 获取时间
@@ -140,9 +114,6 @@ def main():
         screen.blit(score_text, [20, 10])
         pygame.display.flip()
         Clock.tick(60)
-=======
->>>>>>> 1280a38b445aa0c0751c4a0954720200e7c5d52e
-
         for event in pygame.event.get():
             if event.type == QUIT:
                 sys.exit()
@@ -152,10 +123,7 @@ def main():
             if event.type == GenPteraEvent:
                 if score > 2:
                     Flag_Ptera = True
-<<<<<<< HEAD
         # 实现恐龙跳跃
-=======
->>>>>>> 1280a38b445aa0c0751c4a0954720200e7c5d52e
         key_pressed = pygame.key.get_pressed()
         if key_pressed[pygame.K_SPACE]:
             dinosaur.is_jumping = True
@@ -173,11 +141,8 @@ def main():
             dinosaur.jump(Time_Passed)
         dinosaur.draw(screen)
         # 障碍物——植物
-<<<<<<< HEAD
         if random.random() < Obstache_Probability(score, Grade) and Flag_Plant:
-=======
-        if random.random() < Obstache_Probability(score) and Flag_Plant:
->>>>>>> 1280a38b445aa0c0751c4a0954720200e7c5d52e
+        #if random.random() < Obstache_Probability(score) and Flag_Plant:
             plant = Plant(Width, Height)
             plants.add(plant)
             Flag_Plant = False
@@ -191,11 +156,8 @@ def main():
                 continue
             plant.draw(screen)
         # 障碍物——翼龙
-<<<<<<< HEAD
         if random.random() < Obstache_Probability(score, Grade) and Flag_Ptera:
-=======
-        if random.random() < Obstache_Probability(score) and Flag_Ptera:
->>>>>>> 1280a38b445aa0c0751c4a0954720200e7c5d52e
+        #if random.random() < Obstache_Probability(score) and Flag_Ptera:
             if len(pteras) > 1:
                 continue
             ptera = Ptera(Width, Height)
@@ -216,35 +178,9 @@ def main():
         if pygame.sprite.spritecollide(dinosaur, plants, False) or pygame.sprite.spritecollide(dinosaur, pteras, False):
             Die_Sound.play()
             Running = False
-<<<<<<< HEAD
-
     res = Show_GameOver(screen, score_text, time_image, taken_time, total_time)
-
     return res
 
-
-
-=======
-        # 计时
-        total_time = 0 # 分钟
-        taken_time = pygame.time.get_ticks()  # 获取时间
-        left_time = total_time * 60000 + taken_time  # 毫秒
-        time_min = left_time // 60000
-        time_sec = left_time % 60000 // 1000
-        time_text = str(time_min).zfill(2) + ':' + str(time_sec).zfill(2)
-        time_font = pygame.font.Font("./fonts/FZSJ-TXJW.TTF", 30)
-        time_image = time_font.render(time_text, True, (0, 0, 0))
-        screen.blit(time_image, [600, 10])
-        # 显示得分
-        score_text = font.render("Score：" + str(score), 1, (0, 0, 0))
-        screen.blit(score_text, [20, 10])
-        pygame.display.flip()
-        Clock.tick(60)
-    res = Show_GameOver(screen, score_text, time_image)
-    return res
-
-
->>>>>>> 1280a38b445aa0c0751c4a0954720200e7c5d52e
 if __name__ == '__main__':
     res = True
     while res:
