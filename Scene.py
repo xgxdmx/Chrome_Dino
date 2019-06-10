@@ -1,16 +1,23 @@
 # coding=utf-8
-import pygame
 import random
+import pygame
 
 
 # 场景类
+
+
 class Scene(pygame.sprite.Sprite):
+    speed_change = 0
+
     def __init__(self, Width=640, Height=500):
+        global speed_change
         pygame.sprite.Sprite.__init__(self)
         self.Width = Width
         self.Height = Height
         self.speed = 8
-        self.imgs = ["./images/backgrounds/background_1.png", "./images/backgrounds/background_2.png", "./images/backgrounds/background_3.png"]
+        # print(self.speed)
+        self.imgs = ["./images/backgrounds/background_1.png", "./images/backgrounds/background_2.png",
+                     "./images/backgrounds/background_3.png"]
         self.reset()
 
     # 持续向左移动

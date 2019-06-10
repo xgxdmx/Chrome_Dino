@@ -9,54 +9,78 @@ from Scene import Scene
 from Obstacle import Plant, Ptera
 from Dinosaur import Dinosaur
 
+
 # 定义常量
 Background_Colour = (250, 250, 250)
 Width = 800
 Height = 400
 Grade = 100
+Probability_2 = 0
 
 # 显示GameOver界面
-def Show_GameOver(screen, score_text, time_image, taken_time, total_time):
+def Show_GameOver(screen, score_text, time_image):
     screen.fill(Background_Colour)
     GameOver_img = pygame.image.load('./images/modules/gameover.png').convert_alpha()
     GameOver_rect = GameOver_img.get_rect()
-    GameOver_rect.left, GameOver_rect.top = Width // 3, int(Height / 2.4)
+    GameOver_rect.left, GameOver_rect.top = Width // 3, int(Height / 3.4)
     screen.blit(GameOver_img, GameOver_rect)
     Restart_img = pygame.image.load("./images/modules/restart.png").convert_alpha()
     Restart_rect = Restart_img.get_rect()
-    Restart_rect.left, Restart_rect.top = int(Width / 2.25), int(Height / 2)
-    Text_img = pygame.image.load("./images/modules/text.png").convert_alpha()
-    Text_rect = Text_img.get_rect()
-    Text_rect.left, Text_rect.top = int(150), int(300)
-    screen.blit(Restart_img, Restart_rect,)
-    screen.blit(score_text, [250,250]) # 输出分数
-    screen.blit(time_image, [400, 250])
-    screen.blit(Text_img, Text_rect)
-    screen.blit(Restart_img, Restart_rect,)
-    screen.blit(score_text, [250,250]) # 输出分数
-    screen.blit(time_image, [400, 250])
+    Restart_rect.left, Restart_rect.top = int(Width / 2.25), int(Height / 2.3)
+    Difficult_Up_img = pygame.image.load("./images/modules/难度增加.png").convert_alpha()
+    DifficultUp_rect = Difficult_Up_img.get_rect()
+    DifficultUp_rect.left, DifficultUp_rect.top = int(550), int(300)
+    Difficult_Down_img = pygame.image.load("./images/modules/难度降低.png").convert_alpha()
+    DifficultDown_rect = Difficult_Down_img.get_rect()
+    DifficultDown_rect.left, DifficultDown_rect.top = int(50), int(300)
+    ChangeDino_img = pygame.image.load("./images/modules/更换角色.png").convert_alpha()
+    ChangeDino_rect = ChangeDino_img.get_rect()
+    ChangeDino_rect.left, ChangeDino_rect.top = int(310), int(300)
+    screen.blit(ChangeDino_img, ChangeDino_rect)
+    screen.blit(Restart_img, Restart_rect)
+    screen.blit(score_text, [250, 250])  # 输出分数
+    screen.blit(time_image, [430, 250])
+    screen.blit(Difficult_Up_img, DifficultUp_rect)
+    screen.blit(Difficult_Down_img, DifficultDown_rect)
     pygame.display.update()
     while True:
+        global Grade
+        global speedChange
         for event in pygame.event.get():
             if event.type == QUIT:
                 sys.exit()
                 pygame.quit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
-                if mouse_pos[0] < Restart_rect.right and mouse_pos[0] > Restart_rect.left and mouse_pos[1] < Restart_rect.bottom and mouse_pos[1] > Restart_rect.top:
+                if Restart_rect.right > mouse_pos[0] > Restart_rect.left and mouse_pos[
+                    1] < Restart_rect.bottom and mouse_pos[1] > Restart_rect.top:
                     return True
-                if mouse_pos[0] < Text_rect.right and mouse_pos[0] > Text_rect.left and mouse_pos[1] < Text_rect.bottom and mouse_pos[1] > Text_rect.top:
-                    global Grade
-                    Grade = Grade + 50
+                if DifficultUp_rect.right > mouse_pos[0] > DifficultUp_rect.left and mouse_pos[
+                    1] < DifficultUp_rect.bottom and mouse_pos[1] > DifficultUp_rect.top:
+                    Grade = Grade - 10
+
                     score = 0
                     Obstache_Probability(score, Grade)
+                    return True
+                if DifficultDown_rect.right > mouse_pos[0] > DifficultDown_rect.left and mouse_pos[
+                    1] < DifficultDown_rect.bottom and mouse_pos[1] > DifficultDown_rect.top:
+                    Grade = Grade + 10
+
+                    score = 0
+                    Obstache_Probability(score, Grade)
+                    return True
+                if ChangeDino_rect.right > mouse_pos[0] > ChangeDino_rect.left and mouse_pos[
+                    1] < ChangeDino_rect.bottom and mouse_pos[1] > ChangeDino_rect.top:
                     return True
 
 
 # 将Score转换为障碍物生成概率
 def Obstache_Probability(score, Grade):
+    global Probability_2
     Probability = 1 / (Grade + math.exp(-score))
-    print(Grade)
+    Probability_2 = round(Probability,2) * 100
+    # print(Grade)
+    # print("speed:  " + speed)
     return min(Probability, 1)
 
 
@@ -100,7 +124,7 @@ def main():
     # 主循环
     while Running:
         # 计时
-        total_time = 0 # 分钟
+        total_time = 0  # 分钟
         taken_time = pygame.time.get_ticks()  # 获取时间
         left_time = total_time * 60000 + taken_time  # 毫秒
         time_min = left_time // 60000
@@ -112,6 +136,9 @@ def main():
         # 显示得分
         score_text = font.render("Score：" + str(score), 1, (0, 0, 0))
         screen.blit(score_text, [20, 10])
+        Probability_text = font.render("障碍物概率：" + str(Probability_2), 1, (0,0,0))
+        screen.blit(Probability_text, [200, 10])
+
         pygame.display.flip()
         Clock.tick(60)
         for event in pygame.event.get():
@@ -176,8 +203,9 @@ def main():
         if pygame.sprite.spritecollide(dinosaur, plants, False) or pygame.sprite.spritecollide(dinosaur, pteras, False):
             Die_Sound.play()
             Running = False
-    res = Show_GameOver(screen, score_text, time_image, taken_time, total_time)
+    res = Show_GameOver(screen, score_text, time_image)
     return res
+
 
 if __name__ == '__main__':
     res = True
