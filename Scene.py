@@ -7,18 +7,23 @@ import pygame
 
 
 class Scene(pygame.sprite.Sprite):
-    speed_change = 0
 
-    def __init__(self, Width=640, Height=500):
+    def __init__(self, speed, Width=640, Height=500):
         global speed_change
         pygame.sprite.Sprite.__init__(self)
         self.Width = Width
         self.Height = Height
-        self.speed = 8
-        # print(self.speed)
+        self.speed = speed
         self.imgs = ["./images/backgrounds/background_1.png", "./images/backgrounds/background_2.png",
                      "./images/backgrounds/background_3.png"]
         self.reset()
+
+    # speedUp
+    def speedUp (self):
+        self.speed +=1
+    # speedDown
+    def speedDown(self):
+        self.speed -=1
 
     # 持续向左移动
     def move(self):

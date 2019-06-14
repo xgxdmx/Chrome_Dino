@@ -9,13 +9,18 @@ from Scene import Scene
 from Obstacle import Plant, Ptera
 from Dinosaur import Dinosaur
 
-
 # 定义常量
 Background_Colour = (250, 250, 250)
 Width = 800
 Height = 400
 Grade = 100
 Probability_2 = 0
+
+speed = 8
+speed_plants = 8
+speed_ptera = 5
+total_time = 0  # 分钟
+taken_time = 0
 
 # 显示GameOver界面
 def Show_GameOver(screen, score_text, time_image):
@@ -45,7 +50,12 @@ def Show_GameOver(screen, score_text, time_image):
     pygame.display.update()
     while True:
         global Grade
-        global speedChange
+        global speed
+        global speed_plants
+        global speed_ptera
+        global img
+        global taken_time
+        global total_time
         for event in pygame.event.get():
             if event.type == QUIT:
                 sys.exit()
@@ -54,23 +64,35 @@ def Show_GameOver(screen, score_text, time_image):
                 mouse_pos = pygame.mouse.get_pos()
                 if Restart_rect.right > mouse_pos[0] > Restart_rect.left and mouse_pos[
                     1] < Restart_rect.bottom and mouse_pos[1] > Restart_rect.top:
+                    pygame.init()
                     return True
                 if DifficultUp_rect.right > mouse_pos[0] > DifficultUp_rect.left and mouse_pos[
                     1] < DifficultUp_rect.bottom and mouse_pos[1] > DifficultUp_rect.top:
                     Grade = Grade - 10
 
+                    speed = speed + 1
+                    speed_plants = speed_plants + 1
+                    speed_ptera = speed_ptera + 1
+
                     score = 0
+
                     Obstache_Probability(score, Grade)
                     return True
                 if DifficultDown_rect.right > mouse_pos[0] > DifficultDown_rect.left and mouse_pos[
                     1] < DifficultDown_rect.bottom and mouse_pos[1] > DifficultDown_rect.top:
                     Grade = Grade + 10
 
+                    speed = speed - 1
+                    speed_plants = speed_plants - 1
+                    speed_ptera = speed_ptera - 1
+
                     score = 0
+
                     Obstache_Probability(score, Grade)
                     return True
                 if ChangeDino_rect.right > mouse_pos[0] > ChangeDino_rect.left and mouse_pos[
                     1] < ChangeDino_rect.bottom and mouse_pos[1] > ChangeDino_rect.top:
+
                     return True
 
 
@@ -78,9 +100,8 @@ def Show_GameOver(screen, score_text, time_image):
 def Obstache_Probability(score, Grade):
     global Probability_2
     Probability = 1 / (Grade + math.exp(-score))
-    Probability_2 = round(Probability,2) * 100
-    # print(Grade)
-    # print("speed:  " + speed)
+    Probability_2 = round(Probability, 2) * 100
+
     return min(Probability, 1)
 
 
@@ -93,8 +114,6 @@ def main():
     Clock = pygame.time.Clock()
     # 得分初始化
     score = 0
-    total_time = 0
-    taken_time = 0
     # 载入游戏素材并初始化
     Jump_Sound = pygame.mixer.Sound("./music/jump.wav")
     Jump_Sound.set_volume(10)
@@ -107,8 +126,10 @@ def main():
     font = pygame.font.Font("./fonts/FZSJ-TXJW.TTF", 30)
     # 实例化
     dinosaur = Dinosaur(Width, Height)
-    scene = Scene(Width, Height)
+    scene = Scene(speed, Width, Height)
+    print(scene.speed)
     plants = pygame.sprite.Group()
+
     pteras = pygame.sprite.Group()
     # 产生障碍物事件
     GenPlantEvent = pygame.constants.USEREVENT + 0
@@ -124,7 +145,7 @@ def main():
     # 主循环
     while Running:
         # 计时
-        total_time = 0  # 分钟
+
         taken_time = pygame.time.get_ticks()  # 获取时间
         left_time = total_time * 60000 + taken_time  # 毫秒
         time_min = left_time // 60000
@@ -136,7 +157,7 @@ def main():
         # 显示得分
         score_text = font.render("Score：" + str(score), 1, (0, 0, 0))
         screen.blit(score_text, [20, 10])
-        Probability_text = font.render("障碍物概率：" + str(Probability_2), 1, (0,0,0))
+        Probability_text = font.render("障碍物概率：" + str(Probability_2), 1, (0, 0, 0))
         screen.blit(Probability_text, [200, 10])
 
         pygame.display.flip()
@@ -148,11 +169,12 @@ def main():
             if event.type == GenPlantEvent:
                 Flag_Plant = True
             if event.type == GenPteraEvent:
-                if score > 10:
+                if score > 5:
                     Flag_Ptera = True
         # 实现恐龙跳跃
         key_pressed = pygame.key.get_pressed()
         if key_pressed[pygame.K_SPACE]:
+            dinosaur.is_jumping = True
             dinosaur.is_jumping = True
             Jump_Sound.play()
         screen.fill(Background_Colour)
@@ -169,7 +191,8 @@ def main():
         dinosaur.draw(screen)
         # 障碍物——植物
         if random.random() < Obstache_Probability(score, Grade) and Flag_Plant:
-            plant = Plant(Width, Height)
+            plant = Plant(speed_plants, Width, Height)
+            print(speed_plants)
             plants.add(plant)
             Flag_Plant = False
         for plant in plants:
@@ -185,7 +208,7 @@ def main():
         if random.random() < Obstache_Probability(score, Grade) and Flag_Ptera:
             if len(pteras) > 5:
                 continue
-            ptera = Ptera(Width, Height)
+            ptera = Ptera(speed_ptera, Width, Height)
             pteras.add(ptera)
             Flag_Ptera = False
         for ptera in pteras:

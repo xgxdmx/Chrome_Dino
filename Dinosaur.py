@@ -8,8 +8,11 @@ class Dinosaur(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.Height = Height
         self.Width = Width
-        self.imgs = ["./images/characters/dino.png", "./images/characters/dino_ducking.png"]
+        self.imgs = ["./images/characters/dino.png"]
+
         self.reset()
+
+
 
     # 跳跃
     def jump(self, Time_Passed):

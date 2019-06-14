@@ -5,13 +5,13 @@ import pygame
 
 # 植物
 class Plant(pygame.sprite.Sprite):
-    def __init__(self, Width=640, Height=500):
+    def __init__(self, speed_plants, Width=640, Height=500):
         pygame.sprite.Sprite.__init__(self)
         self.Width = Width
         self.Height = Height
         # 统计分数
         self.added_score = False
-        self.speed = 8
+        self.speed = speed_plants
         self.imgs = ["./images/obstacles/plant_big.png", "./images/obstacles/plant_small.png"]
         self.generate_random()
 
@@ -37,14 +37,14 @@ class Plant(pygame.sprite.Sprite):
 
 # 翼龙
 class Ptera(pygame.sprite.Sprite):
-    def __init__(self, Width=640, Height=500):
+    def __init__(self, speed_ptera, Width=640, Height=500):
         pygame.sprite.Sprite.__init__(self)
         self.Width = Width
         self.Height = Height
         # 统计分数
         self.added_score = False
         self.imgs = ["./images/obstacles/ptera.png"]
-        self.speed = 5
+        self.speed = speed_ptera
         self.generate()
         # 飞行特效
         self.flying_count = 0
