@@ -15,12 +15,14 @@ Width = 800
 Height = 400
 Grade = 100
 Probability_2 = 0
-
-speed = 8
-speed_plants = 8
-speed_ptera = 5
+Background_Music = ["./music/bg_music.mp3", "./music/bg_music2.mp3", "./music/bg_music3.mp3", "./music/bg_music4.mp3"]  # 背景音乐
+Music_Count = 0  # 背景音乐计数
+speed = 8  # 背景默认速度
+speed_plants = 8  # 植物默认速度
+speed_ptera = 5  # 翼龙默认速度
 total_time = 0  # 分钟
 taken_time = 0
+
 
 # 显示GameOver界面
 def Show_GameOver(screen, score_text, time_image):
@@ -49,11 +51,13 @@ def Show_GameOver(screen, score_text, time_image):
     screen.blit(Difficult_Down_img, DifficultDown_rect)
     pygame.display.update()
     while True:
-        global Grade
-        global speed
-        global speed_plants
-        global speed_ptera
-        global img
+        global Grade  # 难度全局变量
+        global speed  # 背景速度全局变量
+        global speed_plants  # 植物速度全局变量
+        global speed_ptera  # 翼龙速度全局变量
+        global img  # 图片全局变量
+        global Background_Music  # 背景音乐全局变量
+        global Music_Count  # 背景音乐计数全局变量
         global taken_time
         global total_time
         for event in pygame.event.get():
@@ -92,7 +96,10 @@ def Show_GameOver(screen, score_text, time_image):
                     return True
                 if ChangeDino_rect.right > mouse_pos[0] > ChangeDino_rect.left and mouse_pos[
                     1] < ChangeDino_rect.bottom and mouse_pos[1] > ChangeDino_rect.top:
-
+                    if Music_Count < 4:
+                        Music_Count += 1
+                    if Music_Count > 3:
+                        Music_Count = 0
                     return True
 
 
@@ -120,14 +127,13 @@ def main():
     Die_Sound = pygame.mixer.Sound("./music/die.wav")
     Die_Sound.set_volume(10)
     pygame.mixer.init()
-    pygame.mixer.music.load("./music/bg_music.mp3")
+    pygame.mixer.music.load(Background_Music[Music_Count])  # 背景音乐
     pygame.mixer.music.set_volume(5)
     pygame.mixer.music.play(-1)
     font = pygame.font.Font("./fonts/FZSJ-TXJW.TTF", 30)
     # 实例化
     dinosaur = Dinosaur(Width, Height)
     scene = Scene(speed, Width, Height)
-    print(scene.speed)
     plants = pygame.sprite.Group()
 
     pteras = pygame.sprite.Group()
@@ -192,7 +198,6 @@ def main():
         # 障碍物——植物
         if random.random() < Obstache_Probability(score, Grade) and Flag_Plant:
             plant = Plant(speed_plants, Width, Height)
-            print(speed_plants)
             plants.add(plant)
             Flag_Plant = False
         for plant in plants:
