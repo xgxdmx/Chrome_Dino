@@ -12,8 +12,6 @@ class Dinosaur(pygame.sprite.Sprite):
 
         self.reset()
 
-
-
     # 跳跃
     def jump(self, Time_Passed):
         if self.is_jumping_up:

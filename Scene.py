@@ -4,8 +4,6 @@ import pygame
 
 
 # 场景类
-
-
 class Scene(pygame.sprite.Sprite):
 
     def __init__(self, speed, Width=640, Height=500):
@@ -18,14 +16,15 @@ class Scene(pygame.sprite.Sprite):
                      "./images/backgrounds/background_3.png"]
         self.reset()
 
-    # speedUp
-    def speedUp (self):
-        self.speed +=1
-    # speedDown
-    def speedDown(self):
-        self.speed -=1
+    # speedUp 背景移动速度增加
+    def speedUp(self):
+        self.speed += 1
 
-    # 持续向左移动
+    # speedDown 背景移动速度降低
+    def speedDown(self):
+        self.speed -= 1
+
+    # 背景持续向左移动
     def move(self):
         self.x = self.x - self.speed
 

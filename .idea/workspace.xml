@@ -2,18 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d0ccfdbd-98e5-476e-ba70-a76538e84676" name="默认更改列表" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Main.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dinosaur.py" beforeDir="false" afterPath="$PROJECT_DIR$/Dinosaur.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/main/Analysis-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/main/Analysis-00.toc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/main/EXE-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/main/EXE-00.toc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/main/PKG-00.pkg" beforeDir="false" afterPath="$PROJECT_DIR$/build/main/PKG-00.pkg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/main/PKG-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/main/PKG-00.toc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/main/PYZ-00.pyz" beforeDir="false" afterPath="$PROJECT_DIR$/build/main/PYZ-00.pyz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/main/PYZ-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/main/PYZ-00.toc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/main/base_library.zip" beforeDir="false" afterPath="$PROJECT_DIR$/build/main/base_library.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/main/warn-Main.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/main/warn-Main.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/Main.exe" beforeDir="false" afterPath="$PROJECT_DIR$/dist/Main.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obstacle.py" beforeDir="false" afterPath="$PROJECT_DIR$/Obstacle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scene.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scene.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,19 +21,6 @@
         <option value="Python Script" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>pygame.sprite.Sprite</find>
-      <find>Scene</find>
-      <find>speed</find>
-      <find>实例化</find>
-      <find>imgChange</find>
-      <find>rest</find>
-      <find>scene</find>
-      <find>sprit</find>
-      <find>total_time</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -143,6 +124,9 @@
       <workItem from="1560685050416" duration="2060000" />
       <workItem from="1560750336753" duration="1835000" />
       <workItem from="1560752369272" duration="1425000" />
+      <workItem from="1560993001579" duration="326000" />
+      <workItem from="1560995660434" duration="580000" />
+      <workItem from="1561027907519" duration="1757000" />
     </task>
     <task id="LOCAL-00001" summary="Version_3.1">
       <created>1560751754782</created>
@@ -175,6 +159,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Version_3.1" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/$Main.coverage" NAME="Main Coverage Results" MODIFIED="1560753793777" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/$Main.coverage" NAME="Main Coverage Results" MODIFIED="1561029669716" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

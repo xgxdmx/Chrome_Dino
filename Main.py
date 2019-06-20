@@ -15,14 +15,13 @@ Width = 800
 Height = 400
 Grade = 100
 Probability_2 = 0
-Background_Music = ["./music/bg_music.mp3", "./music/bg_music2.mp3", "./music/bg_music3.mp3", "./music/bg_music4.mp3"]  # 背景音乐
+Background_Music = ["./music/bg_music.mp3", "./music/bg_music2.mp3", "./music/bg_music3.mp3",
+                    "./music/bg_music4.mp3"]  # 背景音乐
 Music_Count = 0  # 背景音乐计数
 icon_img = "./images/favicon.ico"
 speed = 8  # 背景默认速度
 speed_plants = 8  # 植物默认速度
 speed_ptera = 5  # 翼龙默认速度
-total_time = 0  # 分钟
-taken_time = 0
 
 
 # 显示GameOver界面
@@ -56,11 +55,8 @@ def Show_GameOver(screen, score_text, time_image):
         global speed  # 背景速度全局变量
         global speed_plants  # 植物速度全局变量
         global speed_ptera  # 翼龙速度全局变量
-        global img  # 图片全局变量
         global Background_Music  # 背景音乐全局变量
         global Music_Count  # 背景音乐计数全局变量
-        global taken_time
-        global total_time
         for event in pygame.event.get():
             if event.type == QUIT:
                 sys.exit()
@@ -128,11 +124,10 @@ def main():
     pygame.mixer.music.set_volume(5)
     pygame.mixer.music.play(-1)
     font = pygame.font.Font("./fonts/FZSJ-TXJW.TTF", 30)
-    # 实例化
+    # 角色、背景、障碍物实例化
     dinosaur = Dinosaur(Width, Height)
     scene = Scene(speed, Width, Height)
     plants = pygame.sprite.Group()
-
     pteras = pygame.sprite.Group()
     # 产生障碍物事件
     GenPlantEvent = pygame.constants.USEREVENT + 0
@@ -148,7 +143,7 @@ def main():
     # 主循环
     while Running:
         # 计时
-
+        total_time = 0
         taken_time = pygame.time.get_ticks()  # 获取时间
         left_time = total_time * 60000 + taken_time  # 毫秒
         time_min = left_time // 60000
@@ -162,7 +157,6 @@ def main():
         screen.blit(score_text, [30, 10])
         Probability_text = font.render("障碍物概率：" + str(Probability_2), 1, (0, 0, 0))
         screen.blit(Probability_text, [210, 10])
-
         pygame.display.flip()
         Clock.tick(60)
         for event in pygame.event.get():
@@ -223,7 +217,6 @@ def main():
                 continue
             ptera.draw(screen)
             Flag_Plant = False
-
         # 碰撞检测
         if pygame.sprite.spritecollide(dinosaur, plants, False) or pygame.sprite.spritecollide(dinosaur, pteras, False):
             Die_Sound.play()
