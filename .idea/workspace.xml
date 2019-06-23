@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d0ccfdbd-98e5-476e-ba70-a76538e84676" name="默认更改列表" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
-    </list>
+    <list default="true" id="d0ccfdbd-98e5-476e-ba70-a76538e84676" name="默认更改列表" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +121,7 @@
       <workItem from="1560995660434" duration="580000" />
       <workItem from="1561027907519" duration="1814000" />
       <workItem from="1561115144178" duration="8000" />
-      <workItem from="1561276214151" duration="857000" />
+      <workItem from="1561276214151" duration="907000" />
     </task>
     <task id="LOCAL-00001" summary="Version_3.1">
       <created>1560751754782</created>
@@ -140,7 +137,14 @@
       <option name="project" value="LOCAL" />
       <updated>1561029714180</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Version:4.0">
+      <created>1561277110484</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1561277110484</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -162,7 +166,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Version_3.1" />
     <MESSAGE value="Version_4.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="Version_4.0" />
+    <MESSAGE value="Version:4.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="Version:4.0" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/$Main.coverage" NAME="Main Coverage Results" MODIFIED="1561277070790" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
