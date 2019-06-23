@@ -168,12 +168,19 @@ def main():
             if event.type == GenPteraEvent:
                 if score > 5:
                     Flag_Ptera = True
-        # 实现恐龙跳跃
+            # 实现鼠标点击恐龙跳跃
+            if event.type == MOUSEBUTTONDOWN:
+                dinosaur.is_jumping = True
+                dinosaur.is_jumping = True
+                Jump_Sound.play()
+        # 实现空格恐龙跳跃
         key_pressed = pygame.key.get_pressed()
         if key_pressed[pygame.K_SPACE]:
             dinosaur.is_jumping = True
             dinosaur.is_jumping = True
             Jump_Sound.play()
+        if key_pressed[pygame.K_ESCAPE]:
+            Running = False
         screen.fill(Background_Colour)
         Time_Passed = time.time() - time0
         time0 = time.time()
